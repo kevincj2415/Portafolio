@@ -1,0 +1,500 @@
+:root {
+    --naranja: #ff6a00;
+    --azul-rey: #005eff;
+    --blanco: #ffffff;
+    --fondo: #0d0d0d;
+    --gris: #222;
+    --gris-claro: #333;
+    --neon-glow: 0 0 10px var(--naranja), 0 0 20px var(--azul-rey);
+    --sombra-suave: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--fondo);
+    color: var(--blanco);
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    letter-spacing: 0.5px;
+    overflow-x: hidden;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #111 80%, var(--azul-rey) 100%);
+    background-color: var(--fondo);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--neon-glow), var(--sombra-suave);
+    border-bottom: 1px solid var(--azul-rey);
+    transition: background 0.3s;
+}
+
+.overlay {
+    width: 80px;
+    height: 80px;
+}
+
+.logo {
+    font-size: 2rem;
+    color: var(--naranja);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--naranja);
+    user-select: none;
+}
+
+nav a {
+    color: var(--blanco);
+    margin: 0 1.2rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+nav a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--naranja);
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--naranja);
+    text-shadow: var(--neon-glow);
+}
+
+nav a:hover::after, nav a:focus::after {
+    width: 100%;
+}
+
+.hero {
+  position: relative;
+  padding: 6rem 2rem 5rem 2rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(2px) brightness(0.7) saturate(1.2);
+  pointer-events: none;
+  transition: filter 0.5s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  background: rgba(20, 20, 40, 0.55);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45), 0 0 24px var(--azul-rey);
+  backdrop-filter: blur(8px) saturate(1.2);
+  border: 1.5px solid rgba(0,94,255,0.25);
+  animation: heroFadeIn 1.2s cubic-bezier(.77,0,.18,1) both;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.98);}
+  to { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-shadow: 0 0 18px var(--azul-rey), 0 0 8px var(--naranja);
+    animation: neonText 2.5s infinite alternate;
+}
+
+@keyframes neonText {
+  from { text-shadow: 0 0 18px var(--azul-rey), 0 0 8px var(--naranja);}
+  to { text-shadow: 0 0 32px #fff, 0 0 16px var(--naranja);}
+}
+
+.hero h1 span {
+    color: var(--naranja);
+    text-shadow: 0 0 18px var(--naranja), 0 0 8px #fff;
+    letter-spacing: 3px;
+    filter: brightness(1.2);
+    animation: spanGlow 2s infinite alternate;
+}
+
+@keyframes spanGlow {
+  from { filter: brightness(1.2);}
+  to { filter: brightness(2);}
+}
+
+.hero p {
+    font-size: 1.35rem;
+    margin-bottom: 2.2rem;
+    color: #e0eaff;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 0 8px #000, 0 0 4px var(--azul-rey);
+    letter-spacing: 1px;
+    animation: fadeInUp 1.5s 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Botón llamativo debajo del texto hero */
+.hero-content .btn-cta {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.85rem 2.2rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, var(--azul-rey) 60%, var(--naranja) 100%);
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 0 18px var(--azul-rey), 0 0 8px var(--naranja);
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    text-shadow: 0 0 8px #000;
+    animation: fadeInUp 1.5s 0.8s both;
+}
+
+.hero-content .btn-cta:hover, .hero-content .btn-cta:focus {
+    background: linear-gradient(90deg, var(--naranja) 60%, var(--azul-rey) 100%);
+    transform: scale(1.07) translateY(-2px);
+    box-shadow: 0 0 32px var(--naranja), 0 0 16px var(--azul-rey);
+    outline: none;
+}
+
+.proyectos, .experiencia, .contacto {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: var(--gris);
+    border-radius: 16px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--sombra-suave);
+}
+
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    justify-items: center;
+}
+
+.card {
+    background: var(--gris-claro);
+    border-radius: 16px;
+    box-shadow: var(--neon-glow), 0 2px 12px rgba(0,0,0,0.3);
+    width: 320px;
+    max-width: 340px;
+    min-width: 260px;
+    max-height: 800px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: var(--blanco);
+    border: 1.5px solid var(--naranja);
+    text-align: left;
+    padding: 0;
+}
+
+.card:hover {
+    transform: scale(1.06) translateY(-6px);
+    box-shadow: 0 0 24px var(--azul-rey), 0 2px 24px rgba(0,0,0,0.5);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    filter: brightness(0.85) saturate(1.1);
+    border-bottom: 2px solid var(--azul-rey);
+}
+
+.card-content {
+    padding: 1.5rem 1.2rem;
+    background: rgba(20, 20, 40, 0.55);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    border-top: 1px solid var(--azul-rey);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 0.7rem 0;
+    color: var(--naranja);
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 8px var(--naranja);
+}
+
+.card-desc {
+    font-size: 1.05rem;
+    color: #e0eaff;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 4px #000, 0 0 2px var(--azul-rey);
+    letter-spacing: 0.5px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--azul-rey) var(--gris-claro);
+}
+
+.card-desc::-webkit-scrollbar {
+    width: 6px;
+    background: var(--gris-claro);
+}
+.card-desc::-webkit-scrollbar-thumb {
+    background: var(--azul-rey);
+    border-radius: 4px;
+}
+
+.card-links {
+    margin-top: auto;
+    display: flex;
+    gap: 0.7rem;
+}
+
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: var(--azul-rey);
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 0 8px var(--azul-rey);
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.btn-link.github {
+    background: #24292e;
+}
+.btn-link.web {
+    background: var(--naranja);
+}
+.btn-link:hover, .btn-link:focus {
+    background: var(--naranja);
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 0 16px var(--naranja);
+}
+.btn-link svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: #fff;
+}
+
+/* --- Navbar responsive con hamburguesa --- */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.nav-toggle-label span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  margin: 4px 0;
+  background: var(--naranja);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mostrar hamburguesa y ocultar nav en móvil */
+@media (max-width: 700px) {
+  .nav-toggle-label {
+    display: flex;
+  }
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    width: 70vw;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(20,20,40,0.97);
+    box-shadow: -2px 0 24px #000a, 0 0 24px var(--azul-rey);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem 2rem;
+    gap: 2rem;
+    transition: right 0.3s cubic-bezier(.77,0,.18,1);
+    z-index: 1050;
+    display: flex;
+  }
+  .main-nav a {
+    font-size: 1.3rem;
+    margin: 0.7rem 0;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .nav-toggle:checked + .nav-toggle-label + .main-nav {
+    right: 0;
+  }
+  /* Animación del icono hamburguesa */
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Opcional: fondo oscuro al abrir menú */
+@media (max-width: 700px) {
+  .nav-toggle:checked ~ .hero,
+  .nav-toggle:checked ~ section,
+  .nav-toggle:checked ~ footer {
+    filter: blur(2px) brightness(0.7);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 1200px) {
+    .proyectos, .experiencia, .contacto {
+        max-width: 98vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .proyectos, .experiencia, .contacto {
+        padding: 2.5rem 1rem;
+    }
+    .proyectos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero-content {
+        padding: 1.5rem 0.7rem;
+    }
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        padding: 0.7rem 1rem;
+    }
+    .logo {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    nav a {
+        margin: 0 0.5rem;
+        font-size: 1rem;
+    }
+    .hero {
+        padding: 4rem 1rem 2rem 1rem;
+    }
+    .hero-content {
+        padding: 1rem 0.5rem;
+        border-radius: 12px;
+    }
+    .proyectos, .experiencia, .contacto {
+        padding: 1.5rem 0.5rem;
+        border-radius: 8px;
+    }
+    .proyectos-grid {
+        gap: 1rem;
+    }
+    .card {
+        padding: 1rem 0.7rem;
+        border-radius: 8px;
+    }
+    footer {
+        padding: 1rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}

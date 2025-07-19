@@ -1,0 +1,135 @@
+:root {
+    --naranja: #ff6a00;
+    --azul-rey: #005eff;
+    --blanco: #ffffff;
+    --fondo: #0d0d0d;
+    --gris: #222;
+    --gris-claro: #333;
+    --neon-glow: 0 0 10px var(--naranja), 0 0 20px var(--azul-rey);
+    --sombra-suave: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+body {
+    font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(2px) brightness(0.7) saturate(1.2);
+    pointer-events: none;
+}
+
+.login-container {
+    background: rgba(20, 20, 40, 0.65);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45), 0 0 24px var(--azul-rey);
+    border: 1.5px solid rgba(0,94,255,0.25);
+    backdrop-filter: blur(8px) saturate(1.2);
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-width: 320px;
+    max-width: 350px;
+    width: 100%;
+    z-index: 1;
+    animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) both;
+}
+
+.login-container h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--naranja);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px var(--azul-rey), 0 0 8px var(--naranja);
+    font-family: 'Orbitron', Arial, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 1.3rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--blanco);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1.5px solid var(--azul-rey);
+    border-radius: 8px;
+    background: rgba(30,30,50,0.85);
+    color: var(--blanco);
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 0 8px var(--azul-rey) inset;
+    transition: border 0.3s, box-shadow 0.3s;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border: 1.5px solid var(--naranja);
+    box-shadow: 0 0 16px var(--naranja), 0 0 8px var(--azul-rey) inset;
+    background: rgba(30,30,50,0.95);
+}
+
+button {
+    width: 100%;
+    padding: 0.85rem;
+    background: linear-gradient(90deg, var(--azul-rey) 60%, var(--naranja) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 18px var(--azul-rey), 0 0 8px var(--naranja);
+    text-shadow: 0 0 8px #000;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin-top: 0.5rem;
+    font-family: 'Orbitron', Arial, sans-serif;
+}
+
+button:hover, button:focus {
+    background: linear-gradient(90deg, var(--naranja) 60%, var(--azul-rey) 100%);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 32px var(--naranja), 0 0 16px var(--azul-rey);
+    outline: none;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .login-container {
+        min-width: 90vw;
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        border-radius: 14px;
+    }
+    .login-container h2 {
+        font-size: 1.3rem;
+    }
+}
