@@ -1,3 +1,6 @@
 flask
 pymongo 
 python-dotenv
+gunicorn
+Flask-Cors
+Flask-Session
