@@ -19,7 +19,8 @@ app.db = cliente.Portafolio
 @app.route('/')
 def index():
     proyectos = [proyecto for proyecto in app.db.proyectos.find({})]
-    return render_template('index.html', proyectos=proyectos)
+    habilidades = [habilidad for habilidad in app.db.habilidades.find({})]
+    return render_template('index.html', proyectos=proyectos, habilidades=habilidades)
 
 @app.route('/ingresar')
 def ingresar():
@@ -28,7 +29,8 @@ def ingresar():
 @app.route('/central')
 def central():
     proyectos = [proyecto for proyecto in app.db.proyectos.find({})]
-    return render_template('central.html', proyectos=proyectos)
+    habilidades = [habilidad for habilidad in app.db.habilidades.find({})]
+    return render_template('central.html', proyectos=proyectos, habilidades=habilidades)
 
 @app.route('/passar', methods=['POST'])
 def passar():
@@ -67,6 +69,20 @@ def agregar_proyecto():
         'imagen_url': imagen_url
     })
     return redirect('/central')  # Ajusta según tu ruta
+
+@app.route('/agregar_habilidad', methods=['POST'])
+def agregar_habilidad():
+    tecnologia = request.form['tecnologia']
+    experiencia = request.form['experiencia']
+    imagen = request.form['imagen']
+    proyectos = request.form['proyectos'].splitlines()
+    descripcion = request.form['descripcion']
+    app.db.habilidades.insert_one({'tecnologia': tecnologia,
+                                   'experiencia': experiencia,
+                                   'imagen': imagen,
+                                   'proyectos': proyectos,
+                                   'descripcion': descripcion})
+    return redirect('/central')
 
 if __name__ == '__main__':
     app.run(debug = True, port=1224)

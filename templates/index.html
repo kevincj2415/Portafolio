@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Portafolio Gamer</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Portafolio KJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='image/img_logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
 
@@ -15,7 +14,9 @@
 <body>
     
     <header>
-        <div class="logo">Kevin GC</div>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='image/img_logo.png') }}" alt="Logo Kevin GC" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+        </div>
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
         <label for="nav-toggle" class="nav-toggle-label">
             <span></span>
@@ -23,24 +24,25 @@
             <span></span>
         </label>
         <nav class="main-nav">
-            <a href="#inicio">Inicio</a>
+            <a href="#hero">Inicio</a>
             <a href="#proyectos">Proyectos</a>
-            <a href="#experiencia">Experiencia</a>
-            <a href="/ingresar">Contacto</a>
+            <a href="#experiencia">Habilidades</a>
+            <a href="#contacto">Contacto</a>
+            <!-- <a href="/ingresar">KJ</a> --> <!-- Elimina o comenta esta línea -->
         </nav>
     </header>
     <div class="overlay">
         
     </div>
-    <section class="hero">
+    <section class="hero" id="hero">
         <video autoplay muted loop playsinline class="hero-bg-video">
             <source src="{{ url_for('static', filename='video/Fondo2.mp4') }}" type="video/mp4" />
             Tu navegador no soporta videos HTML5.
         </video>
 
         <div class="hero-content">
-            <h1><span>Bienvenido</span> a mi mundo digital</h1>
-            <p>Desarrollador Gamer con pasión por el código y los retos</p>
+            <h1><span>Bienvenido</span> a mi Portafolio digital</h1>
+            <p>Desarrollador con pasión por el código y los retos</p>
             <a href="#proyectos" class="btn-cta">Ver Proyectos</a>
         </div>
     </section>
@@ -76,21 +78,41 @@
     </section>
 
     <section class="experiencia" id="experiencia">
-        <h2>Experiencia y Habilidades</h2>
-        <ul>
-        <li><strong>Lenguajes:</strong> Python, JavaScript, HTML, CSS</li>
-        <li><strong>Frameworks:</strong> Flask, React (básico)</li>
-        <li><strong>Diseño:</strong> UI/UX, diseño responsive</li>
-        </ul>
+    <h2>Habilidades</h2>
+    <div class="tarjetas-experiencia">
+        {% for habilidad in habilidades%}
+        <div class="tarjeta">
+            <img src="{{ habilidad.imagen }}" alt="{{ habilidad.nombre }}">
+            <h3>{{ habilidad.tecnologia }}</h3>
+            <p><strong>Experiencia:</strong> {{ habilidad.experiencia }}</p>
+            <p><strong>Proyectos:</strong>
+                {% for proyecto in habilidad.proyectos %}
+                    {{ proyecto }}
+                {% endfor %}
+            </p>
+            <p>{{ habilidad.descripcion }}</p>
+        </div>
+        {% endfor %}
+        
+    </div>
     </section>
+
 
     <section class="contacto" id="contacto">
         <h2>Contacto</h2>
-        <p>¿Quieres trabajar conmigo? Escríbeme a <a href="mailto:tucorreo@gmail.com">tucorreo@gmail.com</a></p>
+        <p>¿Quieres trabajar conmigo? Escríbeme a <a href="mailto:tucorreo@gmail.com">kevincj2415@gmail.com</a></p>
     </section>
 
     <footer>
         <p>&copy; 2025 Kevin Dev - Sígueme en mis redes</p>
     </footer>
+    <script>
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        window.location.href = '/ingresar';
+    }
+});
+</script>
 </body>
 </html>

@@ -497,4 +497,189 @@ nav a:hover::after, nav a:focus::after {
         padding: 1rem 0.5rem;
         font-size: 0.9rem;
     }
+    .experiencia {
+    padding: 3rem 1rem;
+    background: #111;
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    }
+
+    .experiencia h2 {
+    font-size: 2.5rem;
+    color: #f84a00;
+    margin-bottom: 2rem;
+    }
+
+    .tarjetas-experiencia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    }
+
+    .tarjeta {
+    background: #1b1b1b;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    max-width: 320px;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .tarjeta:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
+    }
+
+    .tarjeta img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    }
+
+    .tarjeta h3 {
+    font-size: 1.5rem;
+    color: #ff6a00;
+    margin-bottom: 0.5rem;
+    }
+
+    .tarjeta p {
+    font-size: 0.95rem;
+    margin: 0.3rem 0;
+    }
+}
+
+.experiencia {
+    padding: 4rem 2rem;
+    background: #111;
+    color: #fff;
+    font-family: 'Rubik', 'Orbitron', Arial, sans-serif;
+    text-align: center;
+    border-radius: 16px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--sombra-suave);
+}
+
+.experiencia h2 {
+    font-size: 2.5rem;
+    color: var(--naranja);
+    margin-bottom: 2rem;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px var(--naranja), 0 0 4px #fff;
+}
+
+.tarjetas-experiencia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    margin-bottom: 2rem;
+}
+
+.tarjeta {
+    background: #1b1b1b;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    max-width: 320px;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.2), 0 2px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 30px var(--naranja), 0 0 30px rgba(229, 9, 20, 0.4);
+}
+
+.tarjeta img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px var(--azul-rey));
+}
+
+.tarjeta h3 {
+    font-size: 1.5rem;
+    color: var(--naranja);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px var(--naranja);
+}
+
+.tarjeta p {
+    font-size: 0.98rem;
+    margin: 0.3rem 0;
+    color: #e0eaff;
+    text-shadow: 0 0 2px #000;
+}
+
+/* --- Decoración especial para el h2 de Proyectos --- */
+.proyectos h2 {
+    font-size: 2.5rem;
+    color: var(--naranja);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 2.2rem;
+    text-shadow: 0 0 12px var(--naranja), 0 0 8px var(--azul-rey), 0 2px 12px #000;
+    position: relative;
+    font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+}
+
+.proyectos h2::after {
+    content: "";
+    display: block;
+    margin: 0.7rem auto 0 auto;
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--azul-rey) 0%, var(--naranja) 100%);
+    box-shadow: 0 0 12px var(--azul-rey), 0 0 8px var(--naranja);
+}
+
+/* Responsive para experiencia */
+@media (max-width: 900px) {
+    .experiencia {
+        padding: 2.5rem 1rem;
+    }
+    .tarjetas-experiencia {
+        gap: 1.2rem;
+    }
+    .tarjeta {
+        max-width: 95vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .experiencia {
+        padding: 1.5rem 0.5rem;
+        border-radius: 8px;
+    }
+    .experiencia h2 {
+        font-size: 1.5rem;
+    }
+    .tarjetas-experiencia {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .tarjeta {
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+    .tarjeta h3 {
+        font-size: 1.1rem;
+    }
+    .tarjeta img {
+        width: 48px;
+        height: 48px;
+    }
+    .tarjeta p {
+        font-size: 0.92rem;
+    }
 }

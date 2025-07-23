@@ -63,7 +63,11 @@
 </head>
 <body>
     <div class="header">
-        <button class="add-btn" title="Agregar" id="openFormBtn">+</button>
+        <a href="{{ url_for('index') }}" class="volver-btn" title="Volver al portafolio">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </a>
+        <button class="add-btn" title="Agregar Proyecto" id="openFormBtn">+</button>
+        <button class="add-btn habilidad-btn" title="Agregar Habilidad" id="openHabilidadBtn">&#9733;</button>
     </div>
     <div class="cards-container">
         {% for proyecto in proyectos %}
@@ -91,7 +95,7 @@
         {% endfor %}
     </div>
 
-    <!-- Modal Formulario -->
+    <!-- Modal Formulario Proyecto -->
     <div class="modal-bg" id="modalForm">
         <form class="modal-form" method="POST" action="/agregar_proyecto" enctype="multipart/form-data">
             <h2>Nuevo Proyecto</h2>
@@ -109,13 +113,64 @@
             <button type="button" id="closeFormBtn">Cancelar</button>
         </form>
     </div>
+
+    <!-- Modal Formulario Habilidad -->
+    <div class="modal-bg" id="modalHabilidad">
+        <form class="modal-form" method="POST" action="/agregar_habilidad" enctype="multipart/form-data">
+            <h2>Nueva Habilidad</h2>
+            <label for="tecnologia">Tecnología</label>
+            <input type="text" name="tecnologia" id="tecnologia" required>
+            <label for="imagen_habilidad">Imagen</label>
+            <input type="text" name="imagen" id="imagen_habilidad" required>
+            <label for="experiencia">Experiencia</label>
+            <input type="text" name="experiencia" id="experiencia" required>
+            <label for="proyectos">Proyectos (uno por línea)</label>
+            <textarea name="proyectos" id="proyectos" rows="3" placeholder="Proyecto 1&#10;Proyecto 2"></textarea>
+            <label for="descripcion_habilidad">Descripción</label>
+            <textarea name="descripcion" id="descripcion_habilidad" rows="3" required></textarea>
+            <button type="submit">Agregar Habilidad</button>
+            <button type="button" id="closeHabilidadBtn">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- Sección de Habilidades -->
+    <section class="experiencia" id="experiencia">
+        <h2>Experiencia y Habilidades</h2>
+        <div class="tarjetas-experiencia">
+            {% for habilidad in habilidades %}
+            <div class="tarjeta">
+                <img src="{{ habilidad.imagen }}" alt="{{ habilidad.tecnologia }}">
+                <h3>{{ habilidad.tecnologia }}</h3>
+                <p><strong>Experiencia:</strong> {{ habilidad.experiencia }}</p>
+                <p><strong>Proyectos:</strong>
+                    {% for proyecto in habilidad.proyectos %}
+                        {{ proyecto }}
+                    {% endfor %}
+                </p>
+                <p>{{ habilidad.descripcion }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
     <script>
+        // Proyecto modal
         const openBtn = document.getElementById('openFormBtn');
         const closeBtn = document.getElementById('closeFormBtn');
         const modal = document.getElementById('modalForm');
         openBtn.onclick = () => modal.classList.add('active');
         closeBtn.onclick = () => modal.classList.remove('active');
         window.onclick = e => { if(e.target === modal) modal.classList.remove('active'); }
+
+        // Habilidad modal
+        const openHabilidadBtn = document.getElementById('openHabilidadBtn');
+        const closeHabilidadBtn = document.getElementById('closeHabilidadBtn');
+        const modalHabilidad = document.getElementById('modalHabilidad');
+        openHabilidadBtn.onclick = () => modalHabilidad.classList.add('active');
+        closeHabilidadBtn.onclick = () => modalHabilidad.classList.remove('active');
+        window.addEventListener('click', function(e) {
+            if(e.target === modalHabilidad) modalHabilidad.classList.remove('active');
+        });
     </script>
 </body>
 </html>
