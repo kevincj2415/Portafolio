@@ -110,26 +110,7 @@ def imagen(id):
 def agregar_habilidad():
     tecnologia = request.form['tecnologia']
     experiencia = request.form['experiencia']
-    # Aceptar imagen opcional de habilidad (misma política que proyectos)
-    def allowed_file(filename):
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-    imagen_url = None
-    if 'imagen' in request.files:
-        imagen = request.files.get('imagen')
-        if imagen and imagen.filename:
-            filename = imagen.filename
-            if not allowed_file(filename):
-                return jsonify({'error': 'Formato de imagen no permitido para habilidad'}), 400
-            safe_name = secure_filename(filename)
-            unique_name = f"{uuid.uuid4().hex}_{safe_name}"
-            save_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_name)
-            try:
-                imagen.save(save_path)
-            except Exception as e:
-                return jsonify({'error': f'Error al guardar la imagen de habilidad: {str(e)}'}), 500
-            imagen_url = f'/static/image/{unique_name}'
-
+    imagen_url = request.form['imagen']
     proyectos = request.form.get('proyectos', '').splitlines()
     descripcion = request.form.get('descripcion')
     app.db.habilidades.insert_one({'tecnologia': tecnologia,
